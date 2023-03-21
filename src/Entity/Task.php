@@ -27,7 +27,7 @@ class Task
     private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
-    private ?user $user_id = null;
+    private ?User $user_id = null;
 
     public function getId(): ?int
     {
