@@ -27,9 +27,11 @@ class TaskController extends AbstractController
     public function listAction(): Response
     {
         $tasks = $this->taskRepository->findAll();
+        $userConnected = $this->getUser() ?? null;
 
         return $this->render('task/list.html.twig', [
-            'tasks' => $tasks
+            'tasks' => $tasks,
+            'user' => $userConnected
         ]);
     }
 
@@ -44,6 +46,7 @@ class TaskController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $task->setIsDone(false);
+            $task->setUserId($this->getUser() ?? null);
             $task->setCreatedAt(new \DateTime());
             $this->entityManager->persist($task);
             $this->entityManager->flush();
