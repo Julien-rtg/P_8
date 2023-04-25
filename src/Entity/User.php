@@ -14,6 +14,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`User`')]
 #[UniqueEntity("email")]
+#[UniqueEntity("username")]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
