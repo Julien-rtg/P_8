@@ -35,6 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Vous devez saisir un mot de passe.")]
     private ?string $password = null;
 
     #[ORM\Column]
@@ -54,6 +55,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     /**
      * A visual identifier that represents this user.
@@ -133,7 +140,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getSalt(): ?string
     {
-        return null;
+        return '';
     }
 
     /**
