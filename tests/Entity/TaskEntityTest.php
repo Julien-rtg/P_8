@@ -6,26 +6,28 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class TaskEntityTest extends KernelTestCase{
 
+    
     public function getEntity() : User
     {
         $user = new User();
         return $user
-            ->setId(1)
-            ->setUsername('username')
-            ->setEmail('email@email.fr')
-            ->setPassword("mdp123")
-            ->setRoles(["ROLE_USER"]);
+        ->setId(1)
+        ->setUsername('username')
+        ->setEmail('email@email.fr')
+        ->setPassword("mdp123")
+        ->setRoles(["ROLE_USER"]);
     }
-
+    
     public function getTaskEntity() : Task
     {
         $task = new Task();
+        $date = new DateTime();
         return $task
             ->setId(1)
             ->setTitle('titre')
             ->setContent('content')
             ->setIsDone(true)
-            ->setCreatedAt(new DateTime())
+            ->setCreatedAt($date)
             ->setUserId($this->getEntity());
     }
 
@@ -52,7 +54,7 @@ class TaskEntityTest extends KernelTestCase{
         self::assertSame(true, $this->getTaskEntity()->isIsDone());
     }
     // public function testGetCreated(){
-    //     self::assertSame('2023-04-25 11:23:48', $this->getTaskEntity()->getCreatedAt());
+    //     self::assertSame($this->getTaskEntity()->getCreatedAt(), $this->getTaskEntity()->getCreatedAt());
     // }
     // public function testGetUserId(){
     //     self::assertSame($this->getEntity(), $this->getTaskEntity()->getUserId());
