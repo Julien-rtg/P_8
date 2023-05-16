@@ -35,7 +35,7 @@ class UserController extends AbstractController
     }
 
     #[Route("/users/create", name: "user_create")]
-    public function createAction(Request $request)
+    public function createUser(Request $request)
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -62,7 +62,7 @@ class UserController extends AbstractController
 
 
     #[Route("/users/{id}/edit", name: "user_edit")]
-    public function editAction($id, Request $request)
+    public function editUser($id, Request $request)
     {
 
         $user = $this->userRepository->find($id);
