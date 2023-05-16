@@ -45,15 +45,31 @@ class UserControllerTest extends WebTestCase{
         $crawler = $this->client->request('GET', 'users/create');
         $form = $crawler->selectButton('Ajouter')->form([
             'user[username]' => '',
-            'user[email]'=>'1@1.fr',
+            'user[email]'=>'',
+            'user[password][first]' => '',
+            'user[password][second]' => '',
+            'user[roleSelection]' => 'ROLE_ADMIN'
+        ]);
+        $this->client->submit($form);
+        
+        $this->assertStringContainsString("Vous devez saisir un nom d&#039;utilisateur.", $this->client->getResponse()->getContent());
+        $this->assertStringContainsString("Vous devez saisir une adresse email.", $this->client->getResponse()->getContent());
+        $this->assertStringContainsString("Vous devez saisir un mot de passe.", $this->client->getResponse()->getContent());
+    }
+    public function testCreateUser(){
+        $crawler = $this->client->request('GET', 'users/create');
+        $form = $crawler->selectButton('Ajouter')->form([
+            'user[username]' => '1',
+            'user[email]'=>'1',
             'user[password][first]' => '1',
             'user[password][second]' => '1',
             'user[roleSelection]' => 'ROLE_ADMIN'
         ]);
         $this->client->submit($form);
         
-        $this->assertStringContainsString("Vous devez saisir un nom d'utilisateur.", $this->client->getResponse()->getContent());
-
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        // $this->assertSelectorTextContains('div.alert.alert-success','L\'utilisateur a bien été ajouté.');
+        $this->assertSelectorExists('div.alert.alert-success');
     }
 
 
