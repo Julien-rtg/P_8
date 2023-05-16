@@ -46,8 +46,9 @@ class UserController extends AbstractController
 
             $plaintextPassword = $user->getPassword();
             $hashedPassword = $this->passwordHasher->hashPassword($user, $plaintextPassword);
+            $role = $user->getRoleSelection();
             $user->setPassword($hashedPassword);
-            $user->setRoles(['ROLE_USER']);
+            $user->setRoles([$role]);
 
             $this->entityManager->persist($user);
             $this->entityManager->flush();
