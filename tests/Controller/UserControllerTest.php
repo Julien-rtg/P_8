@@ -41,6 +41,20 @@ class UserControllerTest extends WebTestCase{
         $this->assertStringContainsString("This value is already used.", $this->client->getResponse()->getContent());
 
     }
+    public function testSameUsernameUser(){
+        $crawler = $this->client->request('GET', 'users/create');
+        $form = $crawler->selectButton('Ajouter')->form([
+            'user[username]' => 'admin',
+            'user[email]'=>'dzqdzqdn@email.fr',
+            'user[password][first]' => '',
+            'user[password][second]' => '',
+            'user[roleSelection]' => 'ROLE_ADMIN'
+        ]);
+        $this->client->submit($form);
+        
+        $this->assertStringContainsString("This value is already used.", $this->client->getResponse()->getContent());
+
+    }
     public function testMissingFieldUser(){
         $crawler = $this->client->request('GET', 'users/create');
         $form = $crawler->selectButton('Ajouter')->form([
@@ -56,22 +70,22 @@ class UserControllerTest extends WebTestCase{
         $this->assertStringContainsString("Vous devez saisir une adresse email.", $this->client->getResponse()->getContent());
         $this->assertStringContainsString("Vous devez saisir un mot de passe.", $this->client->getResponse()->getContent());
     }
+
     public function testCreateUser(){
         $crawler = $this->client->request('GET', 'users/create');
-        $form = $crawler->selectButton('Ajouter')->form([
-            'user[username]' => '1',
-            'user[email]'=>'1',
-            'user[password][first]' => '1',
-            'user[password][second]' => '1',
-            'user[roleSelection]' => 'ROLE_ADMIN'
+        $buttonCrawlerNode = $crawler->selectButton('Ajouter');
+        $form = $buttonCrawlerNode->form();
+        $crawler = $this->client->submit($form, [
+                'user[username]' => '1',
+                'user[email]'=>'1@1.fr',
+                'user[password][first]' => '1',
+                'user[password][second]' => '1',
+                'user[roleSelection]' => 'ROLE_ADMIN'
         ]);
-        $this->client->submit($form);
-        
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        // $this->assertSelectorTextContains('div.alert.alert-success','L\'utilisateur a bien été ajouté.');
-        $this->assertSelectorExists('div.alert.alert-success');
+
+        $this->assertResponseRedirects();
     }
 
-
+    
 
 }
