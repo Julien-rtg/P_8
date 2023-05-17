@@ -36,7 +36,7 @@ class AppFixtures extends Fixture
             $faker = Factory::create('fr_FR');
 
             $user = new User();
-            $user->setUsername($faker->firstName());
+            $user->setUsername($faker->text(10));
             $user->setPassword($this->userPasswordHasherInterface->hashPassword($user, "mdp123"));
             $user->setEmail($faker->email());
             $user->setRoles(["ROLE_USER"]);

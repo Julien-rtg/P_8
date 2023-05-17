@@ -85,6 +85,26 @@ class UserControllerTest extends WebTestCase{
 
         $this->assertResponseRedirects();
     }
+    public function testEditUser(){
+        $crawler = $this->client->request('GET', 'users/2/edit');
+        $buttonCrawlerNode = $crawler->selectButton('Modifier');
+        $form = $buttonCrawlerNode->form();
+        $crawler = $this->client->submit($form, [
+                'user[username]' => '2',
+                'user[email]'=>'2@1.fr',
+                'user[password][first]' => '1',
+                'user[password][second]' => '1',
+                'user[roleSelection]' => 'ROLE_ADMIN'
+        ]);
+
+        $this->assertResponseRedirects();
+    }
+
+    public function testDeleteUser(){
+        $this->client->request('GET', 'users/2/delete');
+
+        $this->assertResponseRedirects();
+    }
 
     
 
