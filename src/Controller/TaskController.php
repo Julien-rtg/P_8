@@ -86,8 +86,10 @@ class TaskController extends AbstractController
 
 
     #[Route("/tasks/{id}/toggle", name: "task_toggle")]
-    public function toggleTaskAction(Task $task)
+    public function toggleTaskAction($id)
     {
+        $task = $this->taskRepository->find($id);
+
         $task->toggle(!$task->isIsDone());
 
         $this->entityManager->flush();
@@ -99,8 +101,10 @@ class TaskController extends AbstractController
 
 
     #[Route("/tasks/{id}/delete", name: "task_delete")]
-    public function deleteTaskAction(Task $task)
+    public function deleteTaskAction($id)
     {
+        $task = $this->taskRepository->find($id);
+
         $this->entityManager->remove($task);
         $this->entityManager->flush();
 
