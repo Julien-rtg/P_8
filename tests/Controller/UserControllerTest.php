@@ -1,15 +1,18 @@
 <?php
 
+use Faker\Factory;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserControllerTest extends WebTestCase{
 
     private $client;
+    private $faker;
 
     public function setUp() : void
     {
         $this->client = static::createClient();
+        $this->faker = Factory::create('fr_FR');
     }
     
     private function getResponse($http, $route, $code){
@@ -76,8 +79,8 @@ class UserControllerTest extends WebTestCase{
         $buttonCrawlerNode = $crawler->selectButton('Ajouter');
         $form = $buttonCrawlerNode->form();
         $crawler = $this->client->submit($form, [
-                'user[username]' => '1',
-                'user[email]'=>'1@1.fr',
+                'user[username]' => $this->faker->text(10),
+                'user[email]'=> $this->faker->email(),
                 'user[password][first]' => '1',
                 'user[password][second]' => '1',
                 'user[roleSelection]' => 'ROLE_ADMIN'
@@ -86,12 +89,12 @@ class UserControllerTest extends WebTestCase{
         $this->assertResponseRedirects();
     }
     public function testEditUser(){
-        $crawler = $this->client->request('GET', 'users/2/edit');
+        $crawler = $this->client->request('GET', 'users/3/edit');
         $buttonCrawlerNode = $crawler->selectButton('Modifier');
         $form = $buttonCrawlerNode->form();
         $crawler = $this->client->submit($form, [
-                'user[username]' => '2',
-                'user[email]'=>'2@1.fr',
+                'user[username]' => $this->faker->text(25),
+                'user[email]'=> $this->faker->email(),
                 'user[password][first]' => '1',
                 'user[password][second]' => '1',
                 'user[roleSelection]' => 'ROLE_ADMIN'
@@ -101,7 +104,7 @@ class UserControllerTest extends WebTestCase{
     }
 
     public function testDeleteUser(){
-        $this->client->request('GET', 'users/2/delete');
+        $this->client->request('GET', 'users/24/delete');
 
         $this->assertResponseRedirects();
     }
