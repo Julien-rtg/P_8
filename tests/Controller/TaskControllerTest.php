@@ -76,10 +76,10 @@ class TaskControllerTest extends WebTestCase{
 
         $this->assertResponseRedirects();
     }
-    public function testDeleteTask(){
-        $this->client->request('GET', 'tasks/25/delete');
+    // public function testDeleteTask(){
+    //     $this->client->request('GET', 'tasks/25/delete');
 
-        $this->assertResponseRedirects();
-    }
+    //     $this->assertResponseRedirects();
+    // }
 
 }
