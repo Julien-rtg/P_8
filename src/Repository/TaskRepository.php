@@ -39,6 +39,15 @@ class TaskRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByCompletedTask(): array
+       {
+           return $this->createQueryBuilder('t')
+               ->andWhere('t.isDone = 1')
+               ->getQuery()
+               ->getResult()
+           ;
+       }
+
     //    /**
     //     * @return Task[] Returns an array of Task objects
     //     */
