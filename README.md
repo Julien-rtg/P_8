@@ -2,7 +2,7 @@
 
 ## A propos
 
-To Do List app est une application qui permet de gérer ses tâches quotidiennes
+To Do List app est une application qui permet de gérer ses tâches quotidiennes.
 
 ## Versions utilisées
 
