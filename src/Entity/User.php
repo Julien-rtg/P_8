@@ -125,7 +125,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
 
-    public function setRoleSelection($roleSelection): void
+    public function setRoleSelection(string $roleSelection): void
     {
         $this->roleSelection = $roleSelection;
     }
@@ -159,10 +159,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
     }
 
     /**

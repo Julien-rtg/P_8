@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
@@ -26,7 +27,7 @@ class UserController extends AbstractController
         $this->passwordHasher = $passwordHasher;
     }
 
-    #[Route('/users', name: 'user_list')]
+    #[Route('/users', name: 'user_list', methods:'GET')]
     public function index(): Response
     {
         return $this->render('user/list.html.twig', [
@@ -34,8 +35,8 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route("/users/create", name: "user_create")]
-    public function createUser(Request $request)
+    #[Route("/users/create", name: "user_create", methods:['POST', 'GET'])]
+    public function createUser(Request $request): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -62,8 +63,8 @@ class UserController extends AbstractController
     }
 
 
-    #[Route("/users/{id}/edit", name: "user_edit")]
-    public function editUser($id, Request $request)
+    #[Route("/users/{id}/edit", name: "user_edit", methods:['POST', 'GET'])]
+    public function editUser(string $id, Request $request): Response
     {
 
         $user = $this->userRepository->find($id);
@@ -87,8 +88,8 @@ class UserController extends AbstractController
         return $this->render('user/edit.html.twig', ['form' => $form->createView(), 'user' => $user]);
     }
 
-    #[Route("/users/{id}/delete", name: "user_delete")]
-    public function deleteAction($id)
+    #[Route("/users/{id}/delete", name: "user_delete", methods:['POST', 'GET'])]
+    public function deleteAction(string $id): RedirectResponse
     {
 
         $user = $this->userRepository->find($id);

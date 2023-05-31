@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class TaskController extends AbstractController
 {
@@ -23,7 +24,7 @@ class TaskController extends AbstractController
         $this->taskRepository = $taskRepository;
     }
 
-    #[Route('/tasks', name: 'task_list')]
+    #[Route('/tasks', name: 'task_list', methods:'GET')]
     public function listAction(): Response
     {
         $tasks = $this->taskRepository->findAll();
@@ -35,7 +36,7 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route('/tasks_completed', name: 'task_completed')]
+    #[Route('/tasks_completed', name: 'task_completed', methods:'GET')]
     public function listActionCompleted(): Response
     {
         $tasks = $this->taskRepository->findByCompletedTask();
@@ -45,8 +46,8 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route("/tasks/create", name: "task_create")]
-    public function createAction(Request $request)
+    #[Route("/tasks/create", name: "task_create", methods:['POST', 'GET'])]
+    public function createAction(Request $request): Response
     {
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
@@ -70,8 +71,8 @@ class TaskController extends AbstractController
     }
 
 
-    #[Route("/tasks/{id}/edit", name: "task_edit")]
-    public function editAction($id, Task $task, Request $request)
+    #[Route("/tasks/{id}/edit", name: "task_edit", methods:['POST', 'GET'])]
+    public function editAction(string $id, Task $task, Request $request): Response
     {
         $task = $this->taskRepository->find($id);
 
@@ -95,8 +96,8 @@ class TaskController extends AbstractController
     }
 
 
-    #[Route("/tasks/{id}/toggle", name: "task_toggle")]
-    public function toggleTaskAction($id)
+    #[Route("/tasks/{id}/toggle", name: "task_toggle", methods:['POST', 'GET'])]
+    public function toggleTaskAction(string $id): RedirectResponse
     {
         $task = $this->taskRepository->find($id);
 
@@ -110,8 +111,8 @@ class TaskController extends AbstractController
     }
 
 
-    #[Route("/tasks/{id}/delete", name: "task_delete")]
-    public function deleteTaskAction($id)
+    #[Route("/tasks/{id}/delete", name: "task_delete", methods:['POST', 'GET'])]
+    public function deleteTaskAction(string $id): RedirectResponse
     {
         $task = $this->taskRepository->find($id);
 
