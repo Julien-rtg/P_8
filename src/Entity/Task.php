@@ -82,7 +82,7 @@ class Task
         return $this;
     }
 
-    public function toggle($flag)
+    public function toggle(bool $flag): void
     {
         $this->isDone = $flag;
     }

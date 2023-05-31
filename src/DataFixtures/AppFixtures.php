@@ -31,7 +31,7 @@ class AppFixtures extends Fixture
 
     }
 
-    public function userLoad(ObjectManager $manager){
+    public function userLoad(ObjectManager $manager): void{
         for ($i = 0; $i < 10; $i++) {
             $faker = Factory::create('fr_FR');
 
@@ -55,7 +55,7 @@ class AppFixtures extends Fixture
 
     }
 
-    public function taskLoad(ObjectManager $manager){
+    public function taskLoad(ObjectManager $manager): void{
 
         for ($i = 0; $i < 20; $i++) {
             $j = rand(0,20);
