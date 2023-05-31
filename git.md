@@ -1,30 +1,4 @@
-**UTILISATION DE GIT**
-
-**\
-**
-
-# Table des matières {#table-des-matières .TOC-Heading}
-
-[1. Création du compte git
-[3](#création-du-compte-git)](#création-du-compte-git)
-
-[2. Télécharger gitbash [3](#télécharger-gitbash)](#télécharger-gitbash)
-
-[3. Cloner le projet
-[3](#accéder-et-cloner-le-projet)](#accéder-et-cloner-le-projet)
-
-[4. Modification du projet
-[4](#modification-du-projet)](#modification-du-projet)
-
-[A. Création branche [4](#création-branche)](#création-branche)
-
-[B. Envoi des modifications
-[4](#envoi-des-modifications)](#envoi-des-modifications)
-
-[C. Création pull request
-[4](#création-pull-request)](#création-pull-request)
-
-[5. Règles à respecter [6](#règles-à-respecter)](#règles-à-respecter)
+# UTILISATION DE GIT
 
 # Création du compte git
 
@@ -42,9 +16,7 @@
 >
 > Cliquez sur le bouton en haut à droite « Fork ».
 
-![](vertopal_5155c0a5ca0b4fb9a051e72b7cd3190f/media/image1.png){width="6.03125in"
-height="4.08125in"}
-
+![](vertopal_5155c0a5ca0b4fb9a051e72b7cd3190f/media/image1.png)
 > Une fois gitbash installé, lancer le et diriger vous vers le dossier
 > ou vous voulez cloner le projet.
 >
@@ -86,14 +58,11 @@ height="4.08125in"}
 > Cliquez sur « compare & pull request », ce sont les modifications que
 > vous avez apportés au projet.
 >
-> ![](vertopal_5155c0a5ca0b4fb9a051e72b7cd3190f/media/image2.png){width="6.083333333333333in"
-> height="0.47291666666666665in"}
+> ![](vertopal_5155c0a5ca0b4fb9a051e72b7cd3190f/media/image2.png)
 
 Sur cette page nous avons en haut ces éléments
 
-![](vertopal_5155c0a5ca0b4fb9a051e72b7cd3190f/media/image3.png){width="6.3in"
-height="1.0819444444444444in"}
-
+![](vertopal_5155c0a5ca0b4fb9a051e72b7cd3190f/media/image3.png)
 > Base repository étant le repository ou vous avez clonez le projet de
 > base.
 >
@@ -110,26 +79,19 @@ height="1.0819444444444444in"}
 
 Cliquez sur « Create pull request » pour créer la pull request
 
-![](vertopal_5155c0a5ca0b4fb9a051e72b7cd3190f/media/image4.png){width="6.3in"
-height="0.9388888888888889in"}
+![](vertopal_5155c0a5ca0b4fb9a051e72b7cd3190f/media/image4.png)
 
 Vous atterrissez sur cette page, cela signifie que la pull request à
 bien été effectué.
 
-![](vertopal_5155c0a5ca0b4fb9a051e72b7cd3190f/media/image5.png){width="6.3125in"
-height="4.402777777777778in"}
+![](vertopal_5155c0a5ca0b4fb9a051e72b7cd3190f/media/image5.png)
+Maintenant du coté du propriétaire du repository de base, dans l'ongletpull request nous avons :
 
-Maintenant du coté du propriétaire du repository de base, dans l'onglet
-pull request nous avons :
-
-![](vertopal_5155c0a5ca0b4fb9a051e72b7cd3190f/media/image6.png){width="6.3in"
-height="1.0319444444444446in"}
-
+![](vertopal_5155c0a5ca0b4fb9a051e72b7cd3190f/media/image6.png)
 En cliquant sur la pull request nous pouvons merge la pull request qui
 nous permettra de rassembler les informations au projet de base
 
-![](vertopal_5155c0a5ca0b4fb9a051e72b7cd3190f/media/image7.png){width="6.3in"
-height="2.3743055555555554in"}
+![](vertopal_5155c0a5ca0b4fb9a051e72b7cd3190f/media/image7.png)
 
 # Règles à respecter
 
