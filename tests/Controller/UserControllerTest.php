@@ -103,12 +103,4 @@ class UserControllerTest extends WebTestCase{
         $this->assertResponseRedirects();
     }
 
-    // public function testDeleteUser(){
-    //     $this->client->request('GET', 'users/25/delete');
-
-    //     $this->assertResponseRedirects();
-    // }
-
-    
-
 }
