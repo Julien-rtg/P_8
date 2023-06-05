@@ -68,15 +68,17 @@ class UserController extends AbstractController
     {
 
         $user = $this->userRepository->find($id);
+        $user->setRoleSelection($user->getRoles()[0]);
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $formDatas = $form->getData();
             $plaintextPassword = $user->getPassword();
             $hashedPassword = $this->passwordHasher->hashPassword($user, $plaintextPassword);
             $user->setPassword($hashedPassword);
+            $user->setRoles([$formDatas->getRoleSelection()]);
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 

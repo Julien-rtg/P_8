@@ -5,7 +5,9 @@
         {{ form_start(form, {'action' : path('task_edit', { 'id' : task.id })}) }}
             {{ form_widget(form) }}
 
-            <button type="submit" class="btn btn-success pull-right">Modifier</button>
+            {% if task.isDone != 1 and app.user.roles is defined  %}
+                <button type="submit" class="btn btn-success pull-right">Modifier</button>
+            {% endif %}
         {{ form_end(form) }}
     </div>
 {% endblock %}

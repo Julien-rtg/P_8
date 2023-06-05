@@ -40,9 +40,11 @@ class TaskController extends AbstractController
     public function listActionCompleted(): Response
     {
         $tasks = $this->taskRepository->findByCompletedTask();
+        $userConnected = $this->getUser() ?? null;
 
         return $this->render('task/list_completed.html.twig', [
             'tasks' => $tasks,
+            'user' => $userConnected
         ]);
     }
 
