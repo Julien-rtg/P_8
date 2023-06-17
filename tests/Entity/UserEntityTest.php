@@ -14,7 +14,7 @@ class UserEntityTest extends KernelTestCase{
             ->setId(1)
             ->setUsername('username')
             ->setEmail('email@email.fr')
-            ->setPassword("mdp123")
+            ->setPassword("azefyuggyufeyuhgfes")
             ->setRoles(["ROLE_USER"]);
     }
 
@@ -47,7 +47,7 @@ class UserEntityTest extends KernelTestCase{
     public function testBlank(){
         $this->assertHasErrors($this->getEntity()->setUsername(''), 1);
         $this->assertHasErrors($this->getEntity()->setEmail(''), 1);
-        $this->assertHasErrors($this->getEntity()->setPassword(''), 1);
+        $this->assertHasErrors($this->getEntity()->setPassword(''), 2);
     }
 
     public function testAddTask(){
@@ -76,7 +76,7 @@ class UserEntityTest extends KernelTestCase{
         self::assertSame(['ROLE_USER'], $this->getEntity()->getRoles());
     }
     public function testGetPassword(){
-        self::assertSame('mdp123', $this->getEntity()->getPassword());
+        self::assertSame('azefyuggyufeyuhgfes', $this->getEntity()->getPassword());
     }
     public function testGetUserIdentifier(){
         self::assertSame('email@email.fr', $this->getEntity()->getUserIdentifier());

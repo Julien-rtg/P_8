@@ -1,6 +1,7 @@
 <?php
 
 use App\Entity\User;
+use App\Repository\TaskRepository;
 use App\Repository\UserRepository;
 use Faker\Factory;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -12,13 +13,16 @@ class TaskControllerTest extends WebTestCase{
     private $faker;
     private $user;
     private $userRepository;
+    private $taskRepository;
 
     public function setUp() : void
     {
         $this->faker = Factory::create('fr_FR');
         $this->client = static::createClient();
         $this->userRepository = static::getContainer()->get(UserRepository::class);
-        $this->user = $this->userRepository->findOneBy(['id' => 1]);
+        $this->taskRepository = static::getContainer()->get(TaskRepository::class);
+        $this->user = $this->userRepository->findOneByEmail('admin@email.fr');
+        $this->client->loginUser($this->user);
     }
     
     private function getResponse($http, $route, $code){

@@ -1,5 +1,7 @@
 <?php
 
+use App\Repository\TaskRepository;
+use App\Repository\UserRepository;
 use Faker\Factory;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -8,10 +10,17 @@ class UserControllerTest extends WebTestCase{
 
     private $client;
     private $faker;
+    private $userRepository;
+    private $taskRepository;
+    private $user;
 
     public function setUp() : void
     {
         $this->client = static::createClient();
+        $this->userRepository = static::getContainer()->get(UserRepository::class);
+        $this->taskRepository = static::getContainer()->get(TaskRepository::class);
+        $this->user = $this->userRepository->findOneByEmail('admin@email.fr');
+        $this->client->loginUser($this->user);
         $this->faker = Factory::create('fr_FR');
     }
     
@@ -35,8 +44,8 @@ class UserControllerTest extends WebTestCase{
         $form = $crawler->selectButton('Ajouter')->form([
             'user[username]' => 'John Doe',
             'user[email]'=>'admin@email.fr',
-            'user[password][first]' => '',
-            'user[password][second]' => '',
+            'user[password][first]' => 'azefyuggyufeyuhgfes',
+            'user[password][second]' => 'azefyuggyufeyuhgfes',
             'user[roleSelection]' => 'ROLE_ADMIN'
         ]);
         $this->client->submit($form);
@@ -49,8 +58,8 @@ class UserControllerTest extends WebTestCase{
         $form = $crawler->selectButton('Ajouter')->form([
             'user[username]' => 'admin',
             'user[email]'=>'dzqdzqdn@email.fr',
-            'user[password][first]' => '',
-            'user[password][second]' => '',
+            'user[password][first]' => 'azefyuggyufeyuhgfes',
+            'user[password][second]' => 'azefyuggyufeyuhgfes',
             'user[roleSelection]' => 'ROLE_ADMIN'
         ]);
         $this->client->submit($form);
@@ -81,8 +90,8 @@ class UserControllerTest extends WebTestCase{
         $crawler = $this->client->submit($form, [
                 'user[username]' => $this->faker->text(10),
                 'user[email]'=> $this->faker->email(),
-                'user[password][first]' => '1',
-                'user[password][second]' => '1',
+                'user[password][first]' => 'azefyuggyufeyuhgfes',
+                'user[password][second]' => 'azefyuggyufeyuhgfes',
                 'user[roleSelection]' => 'ROLE_ADMIN'
         ]);
 
@@ -95,8 +104,8 @@ class UserControllerTest extends WebTestCase{
         $crawler = $this->client->submit($form, [
                 'user[username]' => $this->faker->text(25),
                 'user[email]'=> $this->faker->email(),
-                'user[password][first]' => '1',
-                'user[password][second]' => '1',
+                'user[password][first]' => 'azefyuggyufeyuhgfes',
+                'user[password][second]' => 'azefyuggyufeyuhgfes',
                 'user[roleSelection]' => 'ROLE_ADMIN'
         ]);
 

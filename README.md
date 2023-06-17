@@ -101,6 +101,15 @@ Cela aura pour effet de créer un jeu de fausses données.
 A la question répondre oui.
 Rafraichir la page de phpmyadmin, les fausses données doivent apparaître.
 
+### Pour réaliser les tests il faut générer cette commandes
+
+Dans votre terminal
+
+```
+vendor/bin/phpunit --coverage-html public/test-coverage
+```
+
+
 
 ### Chargement de To Do List app
 

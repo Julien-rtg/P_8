@@ -36,6 +36,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     #[Assert\NotBlank(message: "Vous devez saisir un mot de passe.")]
+    #[Assert\Length(
+        min: 8,
+        minMessage: 'Votre mot de passe doit faire au minimum 8 de longueur',
+    )]
     private ?string $password = null;
 
     #[ORM\Column]
